@@ -5,6 +5,27 @@ This log records personal task outcomes for `chenzc24`.
 Repository-wide merged or integration-level maintenance history belongs in
 `plan/log.md`.
 
+## 2026-06-22 - Agent workflow kernel extraction
+
+- Target: extract the portable Agent workflow mainline into
+  `agent-workflow-kernel/` so plan-log-experience guidance is separated from
+  LLM Wiki-specific repository rules.
+- Changed areas: added the generic kernel `AGENTS.md`, kernel README, plan
+  guidance, starter maintenance log, target-plan template, experience note
+  guidance, and lesson template; updated the root README with a discovery
+  pointer; added the target plan under
+  `plan/users/chenzc24/2026-06-22-agent-workflow-kernel/`.
+- Design review: the extracted kernel keeps the transferable discipline:
+  target plan, bounded implementation, validation, factual log, optional
+  experience note, and commit. Domain-specific terms such as source packets,
+  wiki distillation, workspace kernels, and repository submodules were left out
+  of the extracted files.
+- Validation: targeted `rg` confirmed the new kernel language and found no
+  extracted-kernel references to `LLM`, `Wiki`, `source packet`, `distill`,
+  `llm_wiki`, `workspace kernel`, or `contracts/schemas`; `git diff --check`
+  passed with only Windows line-ending warnings for edited Markdown files.
+- Commit: planned as `Extract agent workflow kernel`.
+
 ## 2026-06-05 - ADCtoolbox ch1-ch10 density remediation
 
 - Target: fix the shallow-summary failure in the first ch1-ch10 local

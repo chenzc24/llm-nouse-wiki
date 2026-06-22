@@ -72,6 +72,18 @@ Useful workflow ideas include:
 - preserve design history in `docs/`
 - separate working plans from durable architecture notes
 
+The first portable extraction of this discipline now lives under
+`agent-workflow-kernel/`. It reframes the reusable mainline as:
+
+```text
+plan
+-> implementation
+-> validation
+-> log
+-> experience
+-> commit
+```
+
 The content below is historical context for the failed LLM Wiki attempt.
 
 LLM Awesome Wiki is a VSCode-native, Git-first knowledge distillation system
@@ -143,6 +155,7 @@ This is the **system repository**, not an active knowledge workspace.
 
 ```text
 AGENTS.md                  # required rules for agents working in this repo
+agent-workflow-kernel/     # portable plan-log-experience workflow extraction
 contracts/                 # reusable machine-readable schema contracts
 docs/                      # design records, phase plans, collaboration notes
 docs/archive/              # archived concept/background documents
@@ -230,6 +243,8 @@ See `llm_wiki_tools/README.md` for the current command index.
 ## Key Documents
 
 - `AGENTS.md`: repository working rules for agents.
+- `agent-workflow-kernel/README.md`: portable plan-log-experience workflow
+  extraction.
 - `docs/top-level-design/system-architecture-plan.md`: top-level system
   architecture.
 - `docs/top-level-design/workspace-topology-contract.md`: relationship between
