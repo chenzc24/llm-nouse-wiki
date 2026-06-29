@@ -68,10 +68,11 @@ produced a reusable lesson.
 
 ## Experience Extraction
 
-When one or more plans or logs reveal a transferable lesson, extract it into
-`docs/experience/`.
+Experience extraction is a human decision, not an Agent close-out step. A human
+reviews plans, logs, and failures and decides whether a transferable lesson is
+worth extracting into `docs/experience/`.
 
-Good triggers:
+Candidate signals a human may look for:
 
 - the same failure happened more than once
 - a rule changed because reality contradicted the original plan
@@ -79,8 +80,9 @@ Good triggers:
 - a coordination rule prevented or failed to prevent conflicting edits
 - a shortcut saved time and remained safe
 
-Experience notes should cite the relevant plans, logs, commits, reports, or
-reviews.
+When the human asks, an Agent may draft a candidate note citing the relevant
+plans, logs, commits, reports, or reviews. The human accepts, edits, or rejects
+it.
 
 ## Relationship To Git
 

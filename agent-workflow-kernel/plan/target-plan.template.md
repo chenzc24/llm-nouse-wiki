@@ -40,10 +40,15 @@ leave untouched.
 - `git status --short --branch`
 - `<project-specific command>`
 
-## Experience Trigger
+## Experience Signal (for human review)
 
-State whether this target is likely to produce a reusable lesson. If yes,
-identify the expected `docs/experience/` note.
+This field is not an Agent self-check. It is a signal a human can read later
+when deciding whether to ask for a lesson from this target.
+
+Note any candidate signal that appeared during work, such as a repeated
+failure, a contradicted rule, an unsafe shortcut, or a validation gap. Leave
+empty for routine work. An Agent may flag a suspected signal here, but the
+decision to extract a lesson is a human call.
 
 ## Commit Intent
 

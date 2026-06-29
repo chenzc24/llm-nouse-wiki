@@ -4,15 +4,25 @@ This directory contains a portable Agent workflow kernel. It is meant to be
 copied into a project that wants Agent-assisted work to be planned, auditable,
 and able to produce reusable project experience.
 
-The mainline is:
+The mainline has two layers. The per-target loop runs automatically on every
+target:
 
 ```text
 plan
 -> implementation
 -> validation
 -> log
--> experience
 -> commit
+```
+
+The experience layer runs across targets and is human-triggered, not part of
+close-out:
+
+```text
+human reviews plans, logs, or failures
+-> human decides a reusable lesson is worth extracting
+-> Agent drafts a candidate lesson note with evidence
+-> human accepts, edits, or rejects
 ```
 
 ## What This Kernel Provides
@@ -34,7 +44,8 @@ protocol for bounded work:
 - declare file ownership
 - validate changes
 - record factual outcomes
-- extract reusable lessons when the work teaches something
+- support human-triggered extraction of reusable lessons, with the Agent
+  assisting rather than deciding
 
 Project-specific repositories should add their own domain rules, validation
 commands, branch policy, release policy, and review expectations.

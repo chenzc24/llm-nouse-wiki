@@ -2,8 +2,8 @@
 
 This repository uses a plan-log-experience workflow for Agent-assisted work.
 Agents should treat the repository as an engineering project: bounded targets,
-explicit ownership, validated changes, durable logs, and periodic experience
-extraction.
+explicit ownership, validated changes, and durable logs. Reusable experience
+is extracted separately, and only when a human decides it is worth extracting.
 
 ## Operating Discipline
 
@@ -78,40 +78,64 @@ Before considering the target complete:
    - changed areas
    - validation performed
    - commit status
-4. If the target produced a reusable lesson, add or update an experience note
-   under `docs/experience/`.
-5. Review the diff.
-6. Stage only the intended files.
-7. Commit and push according to the project's branch policy.
+4. Review the diff.
+5. Stage only the intended files.
+6. Commit and push according to the project's branch policy.
+7. Experience extraction is not an automatic close-out step. An Agent must not
+   decide on its own that a reusable lesson exists. When a human asks for a
+   lesson from this work, draft a candidate note under `docs/experience/` and
+   cite the supporting plans, logs, or commits; let the human accept, edit, or
+   reject it.
 
 ## Plan-Log-Experience Mainline
 
-The portable workflow is:
+The portable workflow has two layers:
+
+- A hard, automatic per-target loop:
 
 ```text
 target plan
 -> bounded implementation
 -> validation
 -> factual log entry
--> optional experience note
 -> commit
+```
+
+- A soft, human-triggered experience layer that runs across targets:
+
+```text
+human reviews recent plans, logs, or failures
+-> human decides whether work produced a reusable lesson
+-> Agent drafts a candidate lesson note (evidence, interpretation, limits)
+-> human accepts, edits, or rejects
+-> accepted lesson may later feed back into AGENTS.md or a template
 ```
 
 The log is not the experience layer. A log records what happened. An experience
 note extracts a reusable judgment from one or more logs, commits, reviews, or
 failed attempts.
 
-Create or update an experience note when work reveals:
+Deciding whether something is a reusable lesson is a judgment call. Agents
+cannot make it reliably, because "reusable", "repeated failure mode", and
+"applies to other projects" have no deterministic boundary. If an Agent
+self-decided, the experience layer would drift back into being a second log:
+every target would produce a forced lesson, or real cross-target patterns
+would be missed.
 
-- a repeated failure mode
-- a rule that should change
-- a process shortcut that proved unsafe
-- a validation gap
-- a reusable coordination pattern
-- a project assumption that was confirmed or rejected by evidence
+Therefore:
 
-Experience notes should cite the plans, logs, commits, or reports that support
-the lesson.
+- A human decides when to trigger experience extraction.
+- An Agent's role is to assist: surface candidate signals, draft notes that
+  cite evidence, and fill the lesson template. An Agent should never gate-keep
+  whether a lesson is worth extracting on its own.
+- Candidate signals an Agent may flag for a human (without asserting a lesson)
+  include: a repeated failure mode, a rule that reality contradicted, an unsafe
+  shortcut, a validation gap, a reusable coordination pattern, or an assumption
+  confirmed or rejected by evidence.
+
+This is the same anti-self-evaluation principle the kernel applies to quality
+gates: do not let a model's own confidence be the only judge of whether a
+judgment holds.
 
 ## Boundary Rules
 
@@ -131,5 +155,6 @@ Keep `plan/` useful.
   removed according to project policy.
 - Failed, blocked, or unresolved plans should remain visible until the work is
   finished, superseded, or explicitly abandoned.
-- If a completed plan contains a reusable lesson, extract that lesson before
-  archiving the plan.
+- Before archiving a completed plan, flag it for human review if it may contain
+  a reusable lesson. Do not archive a plan that still carries an un-extracted
+  lesson until a human has decided whether to extract it.
